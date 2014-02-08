@@ -23,9 +23,9 @@
         /* my code */
 		
 		.draggable {
-		width:90px;
-		height:90px;
-		border:1px solid black;
+		width:50px;
+		height:50px;
+		border:1px dashed yellow;
 		background-color: white;
 		}
 		.handler {
@@ -36,28 +36,82 @@
 			width: 10px;
 			background-color: green;
 		}
+        #drag_area {
+            width:904px;
+            height:450px;
+        }
+        /*.editable */
 	</style>
 	<script src="intelxdk.js"></script><script type="text/javascript" charset="utf-8">AppMobi.isweb = true;AppMobi.app = 'ky16PvxwEKYZeajKEVOqEYFEWgayMbHWkjryj2smpBY';AppMobi.package = 'PRODUCTION';AppMobi.webRoot = window.location.href.match('[^/]*//.*[/]{1}')[0];AppMobi.internal = {};AppMobi.internal.analyticsServer = '';</script>
-	
-    
+	<script type="text/javascript">
+		/* This code is used to run as soon as Intel activates */
+		var onDeviceReady=function(){
+		//hide splash screen
+		intel.xdk.device.hideSplashScreen();
+		};
+		document.addEventListener("intel.xdk.device.ready",onDeviceReady,true);
+    </script>
+    <script src="js/h5utils.js"></script>
+</head>
 <body id="app_body">
 	<div id="top_section">
  		<label id="lbl_tools" for="tools">Tools</label>    
         <label id="lbl_scene" for="crash scene">Crash Scene</label>
     </div>
 
-	
+	<div id="drag_area">
 	<div id="tools">
+        
+        <div class="draggable"><img src="car%20copy.jpg" /></div>
+        
+        <div class="draggable" style="position:relative;top:10px;"><img style="width:60px;height:60px;" src="obstacle%20copy.jpg" /></div>
+        
+        <div class="draggable" style="position:fixed;top:25px;"><img style="width:60px;height:60px;" src="road-sign%20copy.jpg" /></div>
+        
+        <div class="draggable" style="position:fixed;top:35px;"><img style="width:60px;height:60px;" src="road-straight%20copy.jpg" /></div>
+        
+        <div class="draggable" style="position:fixed;top:50px;"><img style="width:60px;height:60px;" src="road-diagonal%20copy.jpg" /></div>
+        
+        <div class="draggable" style="position:fixed;top:65px;"><img style="width:60px;height:60px;" src="road-curved%20copy.jpg" /></div>
+        
+        <div class="draggable" style="position:fixed;top:80px;"><img style="width:60px;height:60px;" src="arrow%20copy.jpg" /></div>
+        <!--<section id="editable" class="editable" contenteditable="true"><label>DRAG ME</label></section></div>-->
     
     </div>
 	<div id="crash_scene">
-    	
-    </div>
-    <div id="arrow"> 
+        <div id="arrow"> 
     	<img class="draggable2" src="http://www.blograzzi.net/wp-content/uploads/2011/04/arrow.jpg" height="100" width="100" />
+        </div>	
     </div>
+    </div>
+    
 
-    <div class="draggable">DRAG ME</div>
+    
+    
+    <!-- label -->
+    <script>
+var editable = document.getElementById('editable');
+
+addEvent(editable, 'blur', function () {
+  // lame that we're hooking the blur event
+  localStorage.setItem('contenteditable', this.innerHTML);
+  document.designMode = 'off';
+});
+
+addEvent(editable, 'focus', function () {
+  document.designMode = 'on';
+});
+/*
+addEvent(document.getElementById('clear'), 'click', function () {
+  localStorage.clear();
+  window.location = window.location; // refresh
+});
+*/
+if (localStorage.getItem('contenteditable')) {
+  editable.innerHTML = localStorage.getItem('contenteditable');
+}
+
+</script>
     
     <script type="text/javascript">
     var ele = $('.draggable');
@@ -84,6 +138,11 @@
 		if ($(ui.helper).hasClass('rotator'))
 			return true
 		$(this).after($(ui.helper).clone().draggable( {containment: '#crash_scene', grid: [45, 45]}));
+        /*$(this).css({
+            'width':'auto',
+            'height':'auto',
+            'border':'1px dotted black'
+        });*/
 		applyRotation();
 	});
 		// Create handle dynamically

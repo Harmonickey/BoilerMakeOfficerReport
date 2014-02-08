@@ -38,73 +38,10 @@
 		}
 	</style>
 	<script src="intelxdk.js"></script><script type="text/javascript" charset="utf-8">AppMobi.isweb = true;AppMobi.app = 'ky16PvxwEKYZeajKEVOqEYFEWgayMbHWkjryj2smpBY';AppMobi.package = 'PRODUCTION';AppMobi.webRoot = window.location.href.match('[^/]*//.*[/]{1}')[0];AppMobi.internal = {};AppMobi.internal.analyticsServer = '';</script>
-	<script type="text/javascript">
-        // Your original element
-var ele = $('.draggable');
-
-$('.draggable').draggable({
-    helper: "clone"
-});
-$('.draggable').bind('dragstop', function (event, ui) {
-    if ($(ui.helper).hasClass('rotator'))
-        return true
-    $(this).after($(ui.helper).clone().draggable());
-    applyRotation();
-});
-
-// Create handle dynamically
-$('<div class="rotator"></div>').appendTo(ele).addClass('handler').css({
-    'position': 'absolute',
-        'bottom': 5,
-        'right': 5,
-        'height': 10,
-        'width': 10,
-        'background-color': 'green'
-});
-
-ele.css('position', 'relative');
-
-applyRotation();
-
-function applyRotation() {
-    $('.handler').draggable({
-        opacity: 0.01,
-        helper: 'clone',
-        drag: function (event, ui) {
-            var rotateCSS = 'rotate(' + ui.position.left + 'deg)';
-
-            $(this).parent().css({
-                '-moz-transform': rotateCSS,
-                    '-webkit-transform': rotateCSS
-            });
-        }
-    });
-}
-        
-        // drag and rotate ends
-	$(document).ready(function() {
-		var $crash_scene = $("#crash_scene");
-		
-		for (var i = 0; i < 10; i++)
-		{
-			for (var j = 0; j < 15; j++)
-			{
-				$crash_scene.append("<div class='grid' ondrop='drop(event)' ondragover='allowDrop(event)'></div>");
-			}
-			
-		}
-	});
-		
-	</script>
-    <link rel="stylesheet" href="css/themename/jquery-ui.custom.css" />
-<script src="http://code.jquery.com/jquery-1.7.2.js"></script>
-<script src="js/jquery-ui.custom.min.js"></script>
-</head>
-<body>
-    <!-- my code -->
+	
     
 <body id="app_body">
-	<!--<div id="top_section">
+	<div id="top_section">
  		<label id="lbl_tools" for="tools">Tools</label>    
         <label id="lbl_scene" for="crash scene">Crash Scene</label>
     </div>
@@ -121,8 +58,8 @@ function applyRotation() {
     </div>
 
     <div class="draggable">DRAG ME</div>
-    <!--<img id="drag1" src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">-->
-    <script>
+    
+    <script type="text/javascript">
     var ele = $('.draggable');
 	var arrow = $('.draggable2');
 	
@@ -200,8 +137,21 @@ function applyRotation() {
 				});
 			}
 		});
-		
 	}
+	
+	$(document).ready(function() {
+		var $crash_scene = $("#crash_scene");
+
+		for (var i = 0; i < 10; i++)
+		{
+			for (var j = 0; j < 15; j++)
+			{
+				$crash_scene.append("<div class='grid' ondrop='drop(event)' ondragover='allowDrop(event)'></div>");
+			}
+
+		}
+	});
+
 	
     </script>
     

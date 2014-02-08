@@ -4,6 +4,8 @@
 	<title>Your New Application</title>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <script type="text/javascript" src="jquery-1.11.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="all.css">
 	<style type="text/css">
 		/* Prevent copy paste for all elements except text fields */
 		*  { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
@@ -19,8 +21,29 @@
 		};
 		document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 	</script>
+    
+    <script type="text/javascript">
+	
+	$(document).ready(function() {
+		var $crash_scene = $("#crash_scene");
+		
+		for (var i = 0; i < 10; i++)
+		{
+			for (var j = 0; j < 15; j++)
+			{
+				$crash_scene.append("<div class='grid'></div>");
+			}
+			
+		}
+
+	});
+		
+	</script>
 </head>
-<body>
+<body id="app_body">
+	<div id="crash_scene">
+    
+    </div>
 	<!-- content goes here-->
 </body>
 </html>

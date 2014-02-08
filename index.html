@@ -4,6 +4,8 @@
 	<title>Your New Application</title>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <script type="text/javascript" src="jquery-1.11.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="all.css">
 	<style type="text/css">
 		/* Prevent copy paste for all elements except text fields */
 		*  { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
@@ -51,16 +53,44 @@
             ev.target.appendChild(document.getElementById(data));
         }
         /* my code */
+	
+	$(document).ready(function() {
+		var $crash_scene = $("#crash_scene");
+		
+		for (var i = 0; i < 10; i++)
+		{
+			for (var j = 0; j < 15; j++)
+			{
+				$crash_scene.append("<div class='grid'></div>");
+			}
+			
+		}
+	});
+		
 	</script>
 </head>
 <body>
     <!-- my code -->
-    welcome to officer report app
+<body id="app_body">
+	<div id="top_section">
+ 		<label id="lbl_tools" for="tools">Tools</label>    
+        <label id="lbl_scene" for="crash scene">Crash Scene</label>
+    </div>
+
+	
+	<div id="tools">
+    
+    </div>
+	<div id="crash_scene">
+    	
+    </div>
+    <div id="arrow"> </div>
+	<!-- content goes here-->
+    
     <canvas id="rect" width="217" height="120" onload="rotate()"  >
     </canvas>
     <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
     <br>
     <!--<img id="drag1" src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">-->
-	<!-- my code -->
 </body>
 </html>

@@ -1,0 +1,45 @@
+@charset "utf-8";
+/* CSS Document */
+
+#app_body {
+	height: 1024px;
+	width: 100%;	
+}
+
+#top_section {
+	width: 880px;
+	background: orange;	
+}
+
+#lbl_scene {
+	margin-left: 160px;	
+}
+
+#tools {
+	border: 1px solid black;
+	height: 450px;
+	width: 200px;
+	float: left;	
+}
+
+#crash_scene {
+	height: 450px;
+	width: 680px;
+	float: left;
+	border: 1px solid black;
+}
+
+#arrow {
+	height: 50px;
+	width: 50px;
+	background: green;
+	float: left;
+	margin-left: -50px;
+}
+
+.grid {
+	height: 43px;
+	width: 43px;
+	border: 1px solid black;
+	float: left;	
+}

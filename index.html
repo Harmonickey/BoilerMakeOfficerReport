@@ -4,7 +4,13 @@
 	<title>Your New Application</title>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
-    <script type="text/javascript" src="jquery-1.11.0.js"></script>
+   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<script type="text/javascript" src="clarity.js"></script>
+<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+    
+    
     <link rel="stylesheet" type="text/css" href="all.css">
 	<style type="text/css">
 		/* Prevent copy paste for all elements except text fields */
@@ -15,17 +21,34 @@
         /* my code */
         #div1 {width:350px;height:70px;padding:10px;border:1px solid #aaaaaa; position:absolute;left:100px;top:150px;}
         /* my code */
+		
+		.draggable {
+		width:90px;
+		height:90px;
+		border:1px solid black;
+		background-color: white;
+		}
+		.handler {
+			position:absolute;
+			bottom:5px;
+			right:5px;
+			height: 10px;
+			width: 10px;
+			background-color: green;
+		}
 	</style>
 	<script src="intelxdk.js"></script><script type="text/javascript" charset="utf-8">AppMobi.isweb = true;AppMobi.app = 'ky16PvxwEKYZeajKEVOqEYFEWgayMbHWkjryj2smpBY';AppMobi.package = 'PRODUCTION';AppMobi.webRoot = window.location.href.match('[^/]*//.*[/]{1}')[0];AppMobi.internal = {};AppMobi.internal.analyticsServer = '';</script>
 	<script type="text/javascript">
 		/* This code is used to run as soon as Intel activates */
+		
 		var onDeviceReady=function(){
 		//hide splash screen
 		intel.xdk.device.hideSplashScreen();
 		};
 		document.addEventListener("intel.xdk.device.ready",onDeviceReady,true);
         
-        /* my code */
+        //my code
+		/* 
         function rotate() {
             rect = document.getElementById('rect');
             ctx = rect.getContext('2d');
@@ -35,24 +58,9 @@
             ctx.fillStyle = "rgb(200, 0, 0)";
             ctx.fillRect(25, 25, 50, 50);
         }
+        */
         
-        function allowDrop(ev)
-        {
-            ev.preventDefault();
-        }
-        
-        function drag(ev)
-        {
-            ev.dataTransfer.setData("Text",ev.target.id);
-        }
-        
-        function drop(ev)
-        {
-            ev.preventDefault();
-            var data=ev.dataTransfer.getData("Text");
-            ev.target.appendChild(document.getElementById(data));
-        }
-        /* my code */
+        //my code
 	
 	$(document).ready(function() {
 		var $crash_scene = $("#crash_scene");
@@ -61,16 +69,18 @@
 		{
 			for (var j = 0; j < 15; j++)
 			{
-				$crash_scene.append("<div class='grid'></div>");
+				$crash_scene.append("<div class='grid' ondrop='drop(event)' ondragover='allowDrop(event)'></div>");
 			}
 			
 		}
 	});
+	
 		
 	</script>
 </head>
 <body>
     <!-- my code -->
+    
 <body id="app_body">
 	<div id="top_section">
  		<label id="lbl_tools" for="tools">Tools</label>    
@@ -84,13 +94,110 @@
 	<div id="crash_scene">
     	
     </div>
-    <div id="arrow"> </div>
-	<!-- content goes here-->
-    
-    <canvas id="rect" width="217" height="120" onload="rotate()"  >
-    </canvas>
-    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
-    <br>
+    <div id="arrow"> 
+    	<img class="draggable2" src="http://www.blograzzi.net/wp-content/uploads/2011/04/arrow.jpg" height="100" width="100" />
+    </div>
+
+    <div class="draggable">DRAG ME</div>
     <!--<img id="drag1" src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">-->
+    <script>
+    var ele = $('.draggable');
+	var arrow = $('.draggable2');
+	
+	$('.draggable').draggable({
+		helper: "clone",
+		containment: '#crash_scene',
+		grid: [45, 45]
+	});
+	
+	$('.draggable2').draggable({
+		containment: '#arrow'
+	});
+	
+	$('.draggable2').bind('dragstop', function (event, ui) {
+		if ($(ui.helper).hasClass('rotator2'))
+			return true
+		$(this).after($(ui.helper).draggable( {containment: '#arrow'}));
+		applyRotation2();
+	});
+	
+	$('.draggable').bind('dragstop', function (event, ui) {
+		if ($(ui.helper).hasClass('rotator'))
+			return true
+		$(this).after($(ui.helper).clone().draggable( {containment: '#crash_scene', grid: [45, 45]}));
+		applyRotation();
+	});
+		// Create handle dynamically
+	$('<div class="rotator"></div>').appendTo(ele).addClass('handler').css({
+		'position': 'absolute',
+			'bottom': 5,
+			'right': 5,
+			'height': 10,
+			'width': 10,
+			'background-color': 'green'
+	});
+	
+	$('<div class="rotator2"></div>').appendTo(arrow).addClass('handler2').css({
+		'position': 'absolute',
+			'bottom':5,
+			'right': 5,
+			'height': 10,
+			'width': 10,
+			'background-color': 'red'
+	});
+	
+	ele.css('position', 'relative');
+	arrow.css('position', 'relative');
+	
+	applyRotation();
+	applyRotation2();
+	
+	function applyRotation() {
+		$('.handler').draggable({
+			opacity: 0.01,
+			helper: 'clone',
+			drag: function (event, ui) {
+				var rotateCSS = 'rotate(' + ui.position.left + 'deg)';
+	
+				$(this).parent().css({
+					'-moz-transform': rotateCSS,
+					'-webkit-transform': rotateCSS
+				});
+			}
+		});
+	}
+	
+	function applyRotation2() {
+		$('.handler2').draggable({
+			opacity: 0.01,
+			drag: function (event, ui) {
+				var rotateCSS = 'rotate(' + ui.position.left + 'deg)';
+				$('#arrow > img').css({
+					'-moz-transform': rotateCSS,
+					'-webkit-transform': rotateCSS
+				});
+			}
+		});
+		
+	}
+	
+    </script>
+    
+    <div id="summary_wrapper">
+    	<p id="summary">
+        </p>
+    </div>
+    <div id="traffic_stop">
+    	
+        <label for="city"> City <input type="text" id="city" value="Kalamazoo">
+        <label for="state"> State <input type="text" id="state" value="Michigan">
+        <button type="button" onclick="get_cam()">Submit</button>
+        <select id="camera_names">
+        	
+        </select>
+        <button type="button" onclick="view_cam()">View</button>
+        <img id="camera" style="clear: both;" />
+    </div>
+    
 </body>
 </html>

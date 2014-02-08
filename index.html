@@ -27,6 +27,7 @@
 		height:90px;
 		border:1px solid black;
 		background-color: white;
+		margin-left: 50px;
 		}
 		.handler {
 			position:absolute;
@@ -38,7 +39,7 @@
 		}
 	</style>
 	<script src="intelxdk.js"></script><script type="text/javascript" charset="utf-8">AppMobi.isweb = true;AppMobi.app = 'ky16PvxwEKYZeajKEVOqEYFEWgayMbHWkjryj2smpBY';AppMobi.package = 'PRODUCTION';AppMobi.webRoot = window.location.href.match('[^/]*//.*[/]{1}')[0];AppMobi.internal = {};AppMobi.internal.analyticsServer = '';</script>
-	
+</head>
     
 <body id="app_body">
 	<div id="top_section">
@@ -46,18 +47,24 @@
         <label id="lbl_scene" for="crash scene">Crash Scene</label>
     </div>
 
-	
-	<div id="tools">
-    
-    </div>
-	<div id="crash_scene">
-    	
+	<div id="drag_area">
+		<div id="tools">
+        	<div class="draggable" style="position:absolute">DRAG ME</div>
+            <div class="draggable" style="position:absolute;">DRAG ME #2 </div>
+            <div class="draggable" style="position:absolute;">DRAG ME #3 </div>
+            <div class="draggable" style="position:absolute;">DRAG ME #4 </div>
+        </div>
+		<div id="crash_scene">
+        	
+        </div>
+        
     </div>
     <div id="arrow"> 
-    	<img class="draggable2" src="http://www.blograzzi.net/wp-content/uploads/2011/04/arrow.jpg" height="100" width="100" />
+                <div class="draggable2" height="90" width="90">
+                    <img id="north" src="http://www.blograzzi.net/wp-content/uploads/2011/04/arrow.jpg" height="80" width="80" />
+                </div>
     </div>
-
-    <div class="draggable">DRAG ME</div>
+    
     
     <script type="text/javascript">
     var ele = $('.draggable');
@@ -65,7 +72,7 @@
 	
 	$('.draggable').draggable({
 		helper: "clone",
-		containment: '#crash_scene',
+		containment: '#drag_area',
 		grid: [45, 45]
 	});
 	
@@ -83,7 +90,10 @@
 	$('.draggable').bind('dragstop', function (event, ui) {
 		if ($(ui.helper).hasClass('rotator'))
 			return true
-		$(this).after($(ui.helper).clone().draggable( {containment: '#crash_scene', grid: [45, 45]}));
+		$(this).after(
+			$(ui.helper).clone().draggable( {
+			containment: '#drag_area', 
+			grid: [45, 45]}));
 		applyRotation();
 	});
 		// Create handle dynamically
@@ -98,7 +108,7 @@
 	
 	$('<div class="rotator2"></div>').appendTo(arrow).addClass('handler2').css({
 		'position': 'absolute',
-			'bottom':5,
+			'bottom': 5,
 			'right': 5,
 			'height': 10,
 			'width': 10,
@@ -129,9 +139,10 @@
 	function applyRotation2() {
 		$('.handler2').draggable({
 			opacity: 0.01,
+			helper: 'clone',
 			drag: function (event, ui) {
 				var rotateCSS = 'rotate(' + ui.position.left + 'deg)';
-				$('#arrow > img').css({
+				$('#north').css({
 					'-moz-transform': rotateCSS,
 					'-webkit-transform': rotateCSS
 				});
@@ -156,20 +167,22 @@
     </script>
     
     <div id="summary_wrapper">
-    	<p id="summary">
-        </p>
+    	<label for="summary" style="float: left">Description of Incident </label>
+    	<textarea cols="73" rows="10" id="summary" size="110"></textarea>
+        
     </div>
     <div id="traffic_stop">
-    	
-        <label for="city"> City <input type="text" id="city" value="Kalamazoo">
-        <label for="state"> State <input type="text" id="state" value="Michigan">
+        <label for="city"> City </label>
+        <input type="text" id="city" value="Kalamazoo">
+        <label for="state" style="clear: both;"> State <label> 
+        <input type="text" id="state" value="Michigan">
         <button type="button" onclick="get_cam()">Submit</button>
         <select id="camera_names">
-        	
         </select>
         <button type="button" onclick="view_cam()">View</button>
-        <img id="camera" style="clear: both;" />
     </div>
+    <img id="camera" style="clear: both;" height="300" width="300"/>
     
+    <button type="button" onclick="get_request()" style="float: left; clear: both;">GET</button>
 </body>
 </html>

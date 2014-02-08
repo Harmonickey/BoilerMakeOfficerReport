@@ -9,6 +9,10 @@
 		*  { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
 		input, textarea  { -webkit-user-select:text; }
 		body { background-color:white; color:black }
+        
+        /* my code */
+        #div1 {width:350px;height:70px;padding:10px;border:1px solid #aaaaaa; position:absolute;left:100px;top:150px;}
+        /* my code */
 	</style>
 	<script src="intelxdk.js"></script><script type="text/javascript" charset="utf-8">AppMobi.isweb = true;AppMobi.app = 'ky16PvxwEKYZeajKEVOqEYFEWgayMbHWkjryj2smpBY';AppMobi.package = 'PRODUCTION';AppMobi.webRoot = window.location.href.match('[^/]*//.*[/]{1}')[0];AppMobi.internal = {};AppMobi.internal.analyticsServer = '';</script>
 	<script type="text/javascript">
@@ -17,10 +21,46 @@
 		//hide splash screen
 		intel.xdk.device.hideSplashScreen();
 		};
-		document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+		document.addEventListener("intel.xdk.device.ready",onDeviceReady,true);
+        
+        /* my code */
+        function rotate() {
+            rect = document.getElementById('rect');
+            ctx = rect.getContext('2d');
+            //ctx.translate(125, 125);
+            //ctx.rotate(Math.PI /6);
+            ctx.rotate(20*Math.PI/180);
+            ctx.fillStyle = "rgb(200, 0, 0)";
+            ctx.fillRect(25, 25, 50, 50);
+        }
+        
+        function allowDrop(ev)
+        {
+            ev.preventDefault();
+        }
+        
+        function drag(ev)
+        {
+            ev.dataTransfer.setData("Text",ev.target.id);
+        }
+        
+        function drop(ev)
+        {
+            ev.preventDefault();
+            var data=ev.dataTransfer.getData("Text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+        /* my code */
 	</script>
 </head>
 <body>
-	<!-- content goes here-->
+    <!-- my code -->
+    welcome to officer report app
+    <canvas id="rect" width="217" height="120" onload="rotate()"  >
+    </canvas>
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
+    <br>
+    <!--<img id="drag1" src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">-->
+	<!-- my code -->
 </body>
 </html>

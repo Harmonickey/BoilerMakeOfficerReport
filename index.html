@@ -5,8 +5,9 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<scrip  t type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <script type="text/javascript" src="clarity.js"></script>
 <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
     
@@ -20,14 +21,13 @@
         
         /* my code */
         #div1 {width:350px;height:70px;padding:10px;border:1px solid #aaaaaa; position:absolute;left:100px;top:150px;}
-        /* my code */
+        
 		
 		.draggable {
 		width:50px;
 		height:50px;
 		border:1px dashed yellow;
 		background-color: white;
-		margin-left: 50px;
 		}
 		.handler {
 			position:absolute;
@@ -40,8 +40,8 @@
         #drag_area {
             width:904px;
             height:450px;
-        }
-        /*.editable */
+		}
+		
 	</style>
 	<script src="intelxdk.js"></script><script type="text/javascript" charset="utf-8">AppMobi.isweb = true;AppMobi.app = 'ky16PvxwEKYZeajKEVOqEYFEWgayMbHWkjryj2smpBY';AppMobi.package = 'PRODUCTION';AppMobi.webRoot = window.location.href.match('[^/]*//.*[/]{1}')[0];AppMobi.internal = {};AppMobi.internal.analyticsServer = '';</script>
 	<script type="text/javascript">
@@ -52,7 +52,6 @@
 		};
 		document.addEventListener("intel.xdk.device.ready",onDeviceReady,true);
     </script>
-    <script src="js/h5utils.js"></script>
 </head>
     
 <body id="app_body">
@@ -61,76 +60,35 @@
         <label id="lbl_scene" for="crash scene">Crash Scene</label>
     </div>
 
-	<div id="drag_area">
+  <div id="drag_area">
 	<div id="tools">
-        
+        <div id="tools-left">
         <div class="draggable"><img src="car%20copy.jpg" /></div>
         
-        <div class="draggable" style="position:relative;top:10px;"><img style="width:60px;height:60px;" src="obstacle%20copy.jpg" /></div>
+        <div class="draggable"><img style="width:60px;height:60px;" src="obstacle%20copy.jpg" /></div>
         
-        <div class="draggable" style="position:fixed;top:25px;"><img style="width:60px;height:60px;" src="road-sign%20copy.jpg" /></div>
+        <div class="draggable"><img style="width:60px;height:60px;" src="road-sign%20copy.jpg" /></div>
         
-        <div class="draggable" style="position:fixed;top:35px;"><img style="width:60px;height:60px;" src="road-straight%20copy.jpg" /></div>
+        <div class="draggable"><img style="width:60px;height:60px;" src="road-straight%20copy.jpg" /></div>
         
-        <div class="draggable" style="position:fixed;top:50px;"><img style="width:60px;height:60px;" src="road-diagonal%20copy.jpg" /></div>
+        <div class="draggable"><img style="width:60px;height:60px;" src="road-diagonal%20copy.jpg" /></div>
         
-        <div class="draggable" style="position:fixed;top:65px;"><img style="width:60px;height:60px;" src="road-curved%20copy.jpg" /></div>
+        <div class="draggable"><img style="width:60px;height:60px;" src="road-curved%20copy.jpg" /></div>
         
-        <div class="draggable" style="position:fixed;top:80px;"><img style="width:60px;height:60px;" src="arrow%20copy.jpg" /></div>
+        <div class="draggable"><img style="width:60px;height:60px;" src="arrow%20copy.jpg" /></div>
         <!--<section id="editable" class="editable" contenteditable="true"><label>DRAG ME</label></section></div>-->
-    
+    	</div>
     </div>
-	<div id="crash_scene">
-        <div id="arrow"> 
-    	<img class="draggable2" src="http://www.blograzzi.net/wp-content/uploads/2011/04/arrow.jpg" height="100" width="100" />
-        </div>	
-    </div>
-    </div>
-    
-
-    
-    
-    <!-- label -->
-    <script>
-var editable = document.getElementById('editable');
-
-addEvent(editable, 'blur', function () {
-  // lame that we're hooking the blur event
-  localStorage.setItem('contenteditable', this.innerHTML);
-  document.designMode = 'off';
-});
-
-addEvent(editable, 'focus', function () {
-  document.designMode = 'on';
-});
-/*
-addEvent(document.getElementById('clear'), 'click', function () {
-  localStorage.clear();
-  window.location = window.location; // refresh
-});
-*/
-if (localStorage.getItem('contenteditable')) {
-  editable.innerHTML = localStorage.getItem('contenteditable');
-}
-
-</script>
-		<div id="tools">
-        	<div class="draggable" style="position:absolute">DRAG ME</div>
-            <div class="draggable" style="position:absolute;">DRAG ME #2 </div>
-            <div class="draggable" style="position:absolute;">DRAG ME #3 </div>
-            <div class="draggable" style="position:absolute;">DRAG ME #4 </div>
-        </div>
-		<div id="crash_scene">
-        	
-        </div>
+    <div id="crash_scene">
         
     </div>
+ 
     <div id="arrow"> 
-                <div class="draggable2" height="90" width="90">
-                    <img id="north" src="http://www.blograzzi.net/wp-content/uploads/2011/04/arrow.jpg" height="80" width="80" />
-                </div>
+        <div class="draggable2" height="90" width="90">
+            <img id="north" src="http://www.blograzzi.net/wp-content/uploads/2011/04/arrow.jpg" height="80" width="80" />
+        </div>
     </div>
-    
+  </div>
     
     <script type="text/javascript">
     var ele = $('.draggable');
@@ -227,15 +185,21 @@ if (localStorage.getItem('contenteditable')) {
 			}
 
 		}
+		
 	});
 
 	
     </script>
     
-    <div id="summary_wrapper">
-    	<label for="summary" style="float: left">Description of Incident </label>
-    	<textarea cols="73" rows="10" id="summary" size="110"></textarea>
+    <div id="upload_photo">
+    <form id="files" method="post" name="file_data" enctype="multipart/form-data">
+    	<label for="upload"> Upload Involved Personal Property Photo</label> 
+        <input type="file" id="find_file" name="file">
+        <input type="submit" id="upload" value="Upload">
+    </form>
+        <div id="photos">
         
+        </div>
     </div>
     <div id="traffic_stop">
         <label for="city"> City </label>

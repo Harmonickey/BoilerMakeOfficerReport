@@ -23,22 +23,15 @@ function get_cam(top, bottom, left, right) {
 			  .text(camera.cameraName));	
 		});
 		
-   }, 'jsonp');
+   }, 'json');
 }
 
 function get_request() {
-	var url = "https://api.tomtom.com/lbs/geocoding/geocode";
-	
-	var data = {
-		L: $('#city').text(),
-		AA: $('#state').text(),
-		format: 'json',
-		key: 'x4gqmhmn2wr2pgnauxnzb3zd'
-	};
-	
-	$.get(url, data, function(response) {
-		alert(response);
-	}, 'jsonp');
+	var url = "https://api.tomtom.com/lbs/geocoding/geocode?L=Kalamazoo&AA=Michigan&format=json&key=x4gqmhmn2wr2pgnauxnzb3zd";
+
+	$.get(url, function(response) {
+		
+	}, 'xml');
 }
 
 function view_cam()
@@ -49,3 +42,7 @@ function view_cam()
 	
 	$('#camera').attr('src', src);
 }
+
+
+
+

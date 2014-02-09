@@ -63,20 +63,20 @@
   <div id="drag_area">
 	<div id="tools">
         <div id="tools-left">
-        <div class="draggable"><img src="car%20copy.jpg" /></div>
-        
-        <div class="draggable"><img style="width:60px;height:60px;" src="obstacle%20copy.jpg" /></div>
-        
-        <div class="draggable"><img style="width:60px;height:60px;" src="road-sign%20copy.jpg" /></div>
-        
-        <div class="draggable"><img style="width:60px;height:60px;" src="road-straight%20copy.jpg" /></div>
-        
-        <div class="draggable"><img style="width:60px;height:60px;" src="road-diagonal%20copy.jpg" /></div>
-        
-        <div class="draggable"><img style="width:60px;height:60px;" src="road-curved%20copy.jpg" /></div>
-        
-        <div class="draggable"><img style="width:60px;height:60px;" src="arrow%20copy.jpg" /></div>
-        <!--<section id="editable" class="editable" contenteditable="true"><label>DRAG ME</label></section></div>-->
+            <div class="draggable"><img src="car copy.jpg" /></div>
+            
+            <div class="draggable"><img style="width:60px;height:60px;" src="obstacle copy.jpg" /></div>
+            
+            <div class="draggable"><img style="width:60px;height:60px;" src="road-sign copy.jpg" /></div>
+            
+            <div class="draggable"><img style="width:60px;height:60px;" src="road-straight copy.jpg" /></div>
+            
+            <div class="draggable"><img style="width:60px;height:60px;" src="road-diagonal copy.jpg" /></div>
+            
+            <div class="draggable"><img style="width:60px;height:60px;" src="road-curved copy.jpg" /></div>
+            
+            <div class="draggable"><img style="width:60px;height:60px;" src="arrow copy.jpg" /></div>
+            <!--<section id="editable" class="editable" contenteditable="true"><label>DRAG ME</label></section></div>-->
     	</div>
     </div>
     <div id="crash_scene">
@@ -195,23 +195,23 @@
         <input type="file" id="find_file" name="file">
         <input type="submit" id="upload" value="Upload">
     </form>
+    </div>
     <div id="photos">
         <div id="summary_wrapper">
         
         </div>
     </div>
     <div id="traffic_stop">
+    <button type="button" onclick="get_request()" style="float: left;" >Get Traffic Cameras</button>
         <label for="city"> City </label>
         <input type="text" id="city" value="Kalamazoo">
         <label for="state" style="clear: both;"> State <label> 
         <input type="text" id="state" value="Michigan">
-        <button type="button" onclick="get_cam()">Submit</button>
         <select id="camera_names">
         </select>
         <button type="button" onclick="view_cam()">View</button>
     </div>
     <img id="camera" style="clear: both;" height="300" width="300"/>
-    
-    <button type="button" onclick="get_request()" style="float: left; clear: both;" hidden>GET</button>
+ 
 </body>
 </html>

@@ -44,19 +44,9 @@
 	float: left;
 }
 
-.ui-draggable-dragging {
-	border: 2px solid red;	
-}
-
-#upload_photo {
+#summary_wrapper {
 	padding-top: 30px;
 	clear:both;
-	width: 880px;
-	float: left;
-}
-
-#upload_photo > label {
-	float: left;	
 }
 
 #summary {
@@ -70,33 +60,13 @@
 }
 
 #camera {
-	float: left;
+	
 }
 
 #drag_area {
 	width: 904px;
 	height: 450px;
 	float: left;
-}
-
-#tools-left {
-	float: left;
-	width: 50%;	
-	height: 100%;
-}
-
-#tools-left > div {
-	margin-top: 5px;	
-}
-
-#upload {
-	float: left;
-	width: 50px;
-	height: 20px;	
-}
-
-#find_file {
-	float: left;	
 }
 
 

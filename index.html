@@ -5,7 +5,6 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <script type="text/javascript" src="clarity.js"></script>
@@ -21,7 +20,7 @@
         
         /* my code */
         #div1 {width:350px;height:70px;padding:10px;border:1px solid #aaaaaa; position:absolute;left:100px;top:150px;}
-        
+        /* my code */
 		
 		.draggable {
 		width:73px;
@@ -40,8 +39,8 @@
         #drag_area {
             width:904px;
             height:450px;
-		}
-		
+        }
+        /*.editable */
 	</style>
 	<script src="intelxdk.js"></script><script type="text/javascript" charset="utf-8">AppMobi.isweb = true;AppMobi.app = 'ky16PvxwEKYZeajKEVOqEYFEWgayMbHWkjryj2smpBY';AppMobi.package = 'PRODUCTION';AppMobi.webRoot = window.location.href.match('[^/]*//.*[/]{1}')[0];AppMobi.internal = {};AppMobi.internal.analyticsServer = '';</script>
 	<script type="text/javascript">
@@ -52,6 +51,7 @@
 		};
 		document.addEventListener("intel.xdk.device.ready",onDeviceReady,true);
     </script>
+    <script src="js/h5utils.js"></script>
 </head>
     
 <body id="app_body">
@@ -60,36 +60,48 @@
         <label id="lbl_scene" for="crash scene">Crash Scene</label>
     </div>
 
-  <div id="drag_area">
+	<div id="drag_area">
 	<div id="tools">
-        <div id="tools-left">
-            <div class="draggable"><img src="car copy.jpg" /></div>
-            
-            <div class="draggable"><img style="width:60px;height:60px;" src="obstacle copy.jpg" /></div>
-            
-            <div class="draggable"><img style="width:60px;height:60px;" src="road-sign copy.jpg" /></div>
-            
-            <div class="draggable"><img style="width:60px;height:60px;" src="road-straight copy.jpg" /></div>
-            
-            <div class="draggable"><img style="width:60px;height:60px;" src="road-diagonal copy.jpg" /></div>
-            
-            <div class="draggable"><img style="width:60px;height:60px;" src="road-curved copy.jpg" /></div>
-            
-            <div class="draggable"><img style="width:60px;height:60px;" src="arrow copy.jpg" /></div>
-            <!--<section id="editable" class="editable" contenteditable="true"><label>DRAG ME</label></section></div>-->
-    	</div>
-    </div>
-    <div id="crash_scene">
         
-    </div>
- 
-    <div id="arrow"> 
-        <div class="draggable2" height="90" width="90">
-            <img id="north" src="http://www.blograzzi.net/wp-content/uploads/2011/04/arrow.jpg" height="80" width="80" />
+        <div style="width:35%;float:left;" id=tools-left">
+        <div class="draggable" style="position:fixed;top:10px;z-index:5;"><img src="car%20copy.png" /></div>
+        
+        <div class="draggable" style="position:relative;top:20px;z-index:5;"><img src="obstacle%20copy.png" /></div>
+        
+        <div class="draggable" style="position:fixed;top:35px;z-index:5;"><img src="road-sign%20copy.png" /></div>
+        
+        <div class="draggable" style="position:fixed;top:55px;"><img src="road-straight%20copy.jpg" /></div>
         </div>
-    </div>
-  </div>
+
+        <div style="width:65%;float:right;margin-left:0px;" id=tools-right">
+        <div class="draggable" style="position:fixed;top:10px;"><img src="road-diagonal%20copy.png" /></div>
         
+        <div class="draggable" style="position:fixed;top:95px;"><img src="road-curved%20copy.png" /></div>
+        
+        <div class="draggable" style="position:fixed;top:170px;margin-left:30px;z-index:5;"><img src="arrow.png" /></div>
+            
+        <div class="draggable" style="position:fixed;top:150px;margin-left:30px;z-index:5;"><input style="margin-top:30px;" type="text" size="7" placeholder="Edit label" /></div>
+        </div>
+        
+        
+        
+        <!--<section id="editable" class="editable" contenteditable="true"><label>DRAG ME</label></section></div>-->
+    
+    </div>
+    
+    <!-- label -->
+   
+		<div id="crash_scene">
+        	
+        </div>
+    
+    <div id="arrow"> 
+                <div class="draggable2" height="90" width="90">
+                    <img id="north" src="north%20copy.png" height="80" width="80" />
+                </div>
+    </div>
+    </div>
+    
     <script type="text/javascript">
     var ele = $('.draggable');
 	var arrow = $('.draggable2');
@@ -183,39 +195,26 @@
 			}
 
 		}
-		
 	});
 
 	
     </script>
     
-    <div id="upload_photo">
-    <form id="files" method="post" name="file_data" enctype="multipart/form-data">
-    	<label for="upload"> Upload Involved Personal Property Photo</label> 
-        <input type="file" id="find_file" name="file">
-        <input type="submit" id="upload" value="Upload">
-    </form>
-    </div>
-    <div id="photos">
-        <div id="summary_wrapper">
+    <div id="summary_wrapper">
         
-        </div>
     </div>
     <div id="traffic_stop">
-    <button type="button" onclick="get_request()" style="float: left;" >Get Traffic Cameras</button>
         <label for="city"> City </label>
         <input type="text" id="city" value="Kalamazoo">
         <label for="state" style="clear: both;"> State <label> 
         <input type="text" id="state" value="Michigan">
-<<<<<<< HEAD
-        <button type="button" onclick="get_request()">Submit</button>
-=======
->>>>>>> 865d3fad270fa98a839ebdcd303683faa5306d3c
+        <button type="button" onclick="get_cam()">Submit</button>
         <select id="camera_names">
         </select>
         <button type="button" onclick="view_cam()">View</button>
     </div>
     <img id="camera" style="clear: both;" height="300" width="300"/>
- 
+    
+    <button type="button" onclick="get_request()" style="float: left; clear: both;" hidden>GET</button>
 </body>
 </html>
